@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueEmojiSlider</title>
+    <style>
+:root {
+  --yellow: #ffd100;
+  --orange: #ff6a13;
+  --darkGray: #53565a;
+  --midGray: #888b8d;
+  --white: #fff;
+  --roundness: 1.25em;
+}
+
+*, *:after, *:before {
+  box-sizing: border-box;
+  color: var(--darkGray);
+}
+
+body {
+  font-family: Nunito;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  place-items: center;
+  margin: 0;
+  background: var(--white);
+  font-size: 0.5rem;
+}
+@media (min-width: 440px) {
+  body {
+    font-size: 0.75rem;
+  }
+}
+@media (min-width: 600px) {
+  body {
+    font-size: 1rem;
+  }
+}
+
+#slider {
+  padding: 2rem 2rem 4remq;
+  display: grid;
+  justify-content: stretch;
+  width: 100%;
+  max-width: 37.5em;
+  margin: auto;
+}
+#slider input {
+  grid-row: 2/3;
+  grid-column: 1/2;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  height: calc(var(--roundness) * 2);
+  cursor: pointer;
+}
+#slider input:focus + .outer {
+  box-shadow: 0 0 0 0.1em var(--white), 0 0 0 0.2em var(--orange);
+}
+#slider input:focus + .outer .emoji {
+  /* Alternate focus style on the emoji button */
+}
+#slider > label {
+  width: 100%;
+  margin: auto;
+  font-size: 1.5em;
+  padding: 0 0 0.5em;
+}
+#slider .outer {
+  grid-row: 2/3;
+  grid-column: 1/2;
+  width: 100%;
+  border-radius: var(--roundness);
+  margin: auto;
+  height: calc(var(--roundness) - 0em);
+  background: var(--midGray);
+  display: flex;
+  align-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+}
+#slider label.inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  border-top-left-radius: var(--roundness) !important;
+  border-bottom-left-radius: var(--roundness) !important;
+  position: absolute;
+  transition: all 0.15s cubic-bezier(0.5, 0.4, 0.2, 1);
+  transform-origin: left;
+}
+#slider .emoji {
+  margin-left: -0.2em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  transition: all 0.15s cubic-bezier(0.5, 0.4, 0.2, 1);
+  border-radius: var(--roundness);
+  text-align: right;
+  font-size: calc(var(--roundness) * 2);
+  line-height: 1.1;
+}
+    </style>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet"> <!-- Menambahkan font Nunito -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <form id="slider" @submit.prevent>
+	
+        <!-- This label and input are the "real" elements. -->
+        <label for="range" :style="{ color: getHappinessColor }">Happiness: {{ val }}%</label>
+        <input v-model.number="val" id="range" type="range" min=0 max=100>
+    
+        <!-- This div and label is what makes the visual effect, but is hidden to assistive technologies -->
+        <div class="slider outer" aria-hidden="true">
+            <label 
+                for="range"
+                :style="{ width: `${val}%`, borderRadius: greaterThanFifty, background: getSliderBackground }"
+                class="slider inner"
+            >
+            </label>
+            <span class="emoji" :style="{ transform: `translateX(${getPlacement})` }">
+                {{ getHappiness }}
+            </span>
+        </div>
+    </form>
+</body>
+<script>
+const slider = new Vue ({
+	el: '#slider',
+	
+	data: () => ({
+		val: 70
+	}),
+	
+	// Just for fun, set the value randomly each time the component loads. (Means the value of 70 above really doesn't do anything.)
+	mounted() {
+		this.val = Math.floor(Math.random() * 101)
+	},
+	
+	computed: {
+		// This is not ideal just because it needs knowledge of how wide the track is.
+		// Ideally I'd like to do this more dynamically so it works with any track length,
+		// but for the sake of smooth animations I kept it like this.
+		getPlacement() {
+			return ((this.val * 14.5)) + `%`;
+		},
+		
+		// This is kinda hacky, but if the background is rounded at too low a value, you can see it peeking out from behind the emoji.
+		greaterThanFifty() {
+			return this.val > 50 ? `var(--roundness)` : `0`;
+		},
+		
+		// Makes the color smoothly move from red to orange to yellow
+		getHappinessColor() {
+  		return `rgba(255, ${106 + (103 / 100 * this.val)}, ${(Math.floor(this.val * -1 / 7.692)) + 13}`;
+		},
+		
+		// Adjusts the amount of yellow in the filled slider
+		getSliderBackground() {
+			return `linear-gradient(to right, var(--orange), ${(this.val * -1) + 125}%, var(--yellow))`
+		},
+		
+		// Changes which emoji is displayed
+		getHappiness() {
+			let moods = ["😡","😠","😦","☹️","🙁","😐","🙂","😊","😄","😃","😍"]
+			
+			if (this.val === 0) {
+				return "🤬";
+			} 
+				
+			return moods[(Math.floor(this.val / 10))];
+		}
+	}
+});
+</script>
+</html>

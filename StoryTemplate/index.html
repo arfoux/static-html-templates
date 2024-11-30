@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoryTemplate</title>
+    <style>
+html {
+  background: #000;
+}
+body {
+  font-size: 100%;
+  font-family: 'PT Sans', sans-serif;
+  line-height: 1.5;
+  background: #000;
+  color: rgba(255,255,255,0.7);
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5 {
+  color: #fff;
+  font-family: 'Lora';
+}
+body h1 {
+  font-size: 90px;
+  line-height: 1.1;
+}
+@media screen and (max-width: 40em) {
+  body h1 {
+    font-size: 50px;
+    line-height: 1.25;
+  }
+}
+body h2 {
+  font-size: 40px;
+  line-height: 1.3;
+}
+@media screen and (max-width: 40em) {
+  body h2 {
+    font-size: 28px;
+    line-height: 1.4;
+  }
+}
+body h4 {
+  font-size: 24px;
+  margin-bottom: 0.3em;
+}
+body p {
+  font-size: 20px;
+  line-height: 1.5;
+}
+.container {
+  width: 100%;
+  padding-top: 130px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: opacity 1s 2s;
+}
+.container.out {
+  opacity: 0;
+}
+.container > h1,
+.container > h2,
+.container > p {
+  position: relative;
+  z-index: 2;
+  width: 80%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.fade {
+  transition: all 0.6s;
+}
+.fade.out {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.flow {
+  transition: all 0.8s;
+}
+.flow.out {
+  opacity: 0;
+}
+.flowcontent {
+  position: relative;
+}
+.flowcontent:before {
+  display: table;
+  content: '';
+  width: 1px;
+  height: 1200px;
+}
+.flowcontent .caption {
+  position: absolute;
+  border-radius: 3px;
+  padding: 20px;
+  display: block;
+  top: 50%;
+  left: 10%;
+  z-index: 1;
+  transform: translateY(-50%);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.flowcontent .caption.right {
+  left: auto;
+  right: 10%;
+}
+.flowcontent .imageholder {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.flowcontent .imageholder.img1 {
+  background-image: url("https://dl.dropboxusercontent.com/u/8254962/rihanna-smoke.gif");
+}
+.flowcontent .imageholder.img2 {
+  background-image: url("https://dl.dropboxusercontent.com/u/8254962/pexels-photo-234078%401600px.jpeg");
+}
+.flowcontent video {
+  position: fixed;
+  min-height: 100%;
+  min-width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 0;
+}
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ScrollMagic CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    
+</head>
+<body>
+    
+<div class="container out">
+    <h1>Sleepless nights</h1>
+    <p class="fade">However, standard default text can do the trick. I hope you enjoyed the fake text. The standard default text is designed to ramble about nothing. This string is randomly generated.</p>
+    <p class="fade">This text will not appear in a consistent order. The standard default text is designed to ramble about nothing. Your design looks awesome by the way. If it is not real text, they will focus on the design.</p>
+    <p class="fade">However, standard default text can do the trick. JavaScript has the awesome power to manipulate DOM elements on the fly. People tend to read writing. Humans are creative beings.</p>
+    <h2 class="fade">Keep scrolling down</h2>
+    <p class="fade">Cow pork loin sausage, beef ribs ribeye capicola pancetta porchetta cupim drumstick meatball short ribs ham hock pig. Biltong jowl frankfurter ground round bacon turkey turducken prosciutto cupim bresaola kevin swine ribeye short loin. Rump tail ham hamburger shank chicken tongue meatloaf. Tail tenderloin ball tip, pork chop meatball shank doner ham drumstick. Salami short loin shank filet mignon fatback jowl t-bone ball tip pork chop venison capicola meatball tongue tri-tip. Pork loin pork frankfurter ham hock tongue tail chuck jowl salami short ribs tenderloin chicken turducken.</p>
+    <p class="fade">Rump filet mignon kevin chicken porchetta pastrami ham hock pork loin. Doner tenderloin fatback cow. Andouille alcatra meatloaf venison spare ribs, capicola salami porchetta filet mignon. Turducken chicken short ribs t-bone ground round meatball, ribeye kielbasa short loin boudin shoulder shank sirloin. Pancetta sausage andouille sirloin meatloaf fatback ball tip ham hock alcatra shank.</p>
+    <h2 class="fade">Keep scrolling down</h2>
+    <p class="fade">Meatball shoulder capicola, flank pork chop prosciutto turkey short ribs t-bone short loin. Doner beef ribs drumstick tail. Beef ribs flank pastrami bresaola andouille pig shankle ham hock boudin prosciutto. Swine bresaola shoulder filet mignon hamburger, landjaeger beef cow kielbasa flank strip steak. Turducken filet mignon swine, kielbasa shank boudin drumstick.</p>
+    <p class="fade">Venison hamburger sirloin, pork belly beef ribs spare ribs biltong swine fatback capicola. Corned beef chicken tail, beef ribs porchetta ham hock fatback sausage capicola meatloaf swine shoulder tongue. Short loin ball tip strip steak, tri-tip picanha shank burgdoggen pork pancetta kielbasa venison porchetta leberkas chuck andouille. Short loin pancetta spare ribs, pig jerky pork loin cow boudin landjaeger swine jowl. Capicola bacon jerky pastrami ham hock bresaola leberkas.</p>
+    <h2 class="fade">Keep scrolling down</h2>
+    <p class="fade">However, standard default text can do the trick. I hope you enjoyed the fake text. The standard default text is designed to ramble about nothing. This string is randomly generated.</p>
+    <p class="fade">This text will not appear in a consistent order. The standard default text is designed to ramble about nothing. Your design looks awesome by the way. If it is not real text, they will focus on the design.</p>
+    <p class="fade">However, standard default text can do the trick. JavaScript has the awesome power to manipulate DOM elements on the fly. People tend to read writing. Humans are creative beings.</p>
+    <div class="flowcontent flow">
+      <div class="imageholder img1"></div>
+      <div class="caption">
+        <h4>"I needed you."</h4>
+        <p>Gif</p>
+      </div>
+    </div>
+    <div class="flowcontent flow">
+      <div class="imageholder img2"></div>
+      <div class="caption right">
+        <h4>"She sat there in silence and waited."</h4>
+        <p>Pexels image</p>
+      </div>
+    </div>
+    <h2 class="fade">Keep scrolling down</h2>
+    <p class="fade">Cow pork loin sausage, beef ribs ribeye capicola pancetta porchetta cupim drumstick meatball short ribs ham hock pig. Biltong jowl frankfurter ground round bacon turkey turducken prosciutto cupim bresaola kevin swine ribeye short loin. Rump tail ham hamburger shank chicken tongue meatloaf. Tail tenderloin ball tip, pork chop meatball shank doner ham drumstick. Salami short loin shank filet mignon fatback jowl t-bone ball tip pork chop venison capicola meatball tongue tri-tip. Pork loin pork frankfurter ham hock tongue tail chuck jowl salami short ribs tenderloin chicken turducken.</p>
+    <p class="fade">Rump filet mignon kevin chicken porchetta pastrami ham hock pork loin. Doner tenderloin fatback cow. Andouille alcatra meatloaf venison spare ribs, capicola salami porchetta filet mignon. Turducken chicken short ribs t-bone ground round meatball, ribeye kielbasa short loin boudin shoulder shank sirloin. Pancetta sausage andouille sirloin meatloaf fatback ball tip ham hock alcatra shank.</p>
+    <div class="flowcontent flow">
+      <video autoplay="autoplay" poster="http://gifly.com//media_gifly/7/n/K/c/b/7nKc.jpg" loop="" muted="">
+        <source src="http://gifly.com//media_gifly/7/n/K/c/b/7nKc.mp4" type="video/mp4"/>
+      </video>
+      <div class="caption">
+        <h4>Weird monochromatic video</h4>
+        <p>Gifly mp4 video</p>
+      </div>
+    </div>
+    <h2 class="fade">After Hours Programming created</h2>
+    <p class="fade">Meatball shoulder capicola, flank pork chop prosciutto turkey short ribs t-bone short loin. Doner beef ribs drumstick tail. Beef ribs flank pastrami bresaola andouille pig shankle ham hock boudin prosciutto. Swine bresaola shoulder filet mignon hamburger, landjaeger beef cow kielbasa flank strip steak. Turducken filet mignon swine, kielbasa shank boudin drumstick.</p>
+    <p class="fade">Venison hamburger sirloin, pork belly beef ribs spare ribs biltong swine fatback capicola. Corned beef chicken tail, beef ribs porchetta ham hock fatback sausage capicola meatloaf swine shoulder tongue. Short loin ball tip strip steak, tri-tip picanha shank burgdoggen pork pancetta kielbasa venison porchetta leberkas chuck andouille. Short loin pancetta spare ribs, pig jerky pork loin cow boudin landjaeger swine jowl. Capicola bacon jerky pastrami ham hock bresaola leberkas.</p>
+  </div>
+</body>
+<script>
+/*//////////////////////
+	*
+	* SCROLLMAGIC STARTS
+	*
+	*//////////////////////
+	// init controller
+	var controller = new ScrollMagic.Controller();
+
+ //flow
+  $(".flow").each(function(){
+    $(this).addClass('out');
+    new ScrollMagic.Scene({
+      triggerElement: this,
+      triggerHook: 0,
+      duration: 600
+    })
+    .on("enter", function(ev){$(ev.target.triggerElement()).removeClass('out');})
+    .on("leave", function(ev){$(ev.target.triggerElement()).addClass('out');})
+    .addTo(controller);
+  });
+
+ //fade
+  $(".fade").each(function(){
+    $(this).addClass('out');
+    new ScrollMagic.Scene({
+      triggerElement: this,
+      triggerHook: 0.65
+    })
+    .on("enter", function(ev){$(ev.target.triggerElement()).removeClass('out');})
+    .on("leave", function(ev){$(ev.target.triggerElement()).addClass('out');})
+    .addTo(controller);
+  });
+
+$('.container').removeClass('out');
+</script>
+<!-- jQuery CDN -->
+</html>
